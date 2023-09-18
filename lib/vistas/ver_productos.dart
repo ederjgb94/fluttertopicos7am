@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class VerProductos extends StatelessWidget {
-  VerProductos({super.key});
+  VerProductos({super.key, required this.nombre});
+
+  final String nombre;
 
   final List<String> productos = [
     'Producto 1',
@@ -20,9 +22,9 @@ class VerProductos extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.teal,
-        title: const Text(
-          'Vista 2',
+        backgroundColor: Colors.blue,
+        title: Text(
+          nombre,
         ),
         centerTitle: true,
       ),
