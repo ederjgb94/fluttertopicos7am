@@ -55,6 +55,9 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               TextField(
                 controller: _controller,
+                onChanged: (cadena) {
+                  print(cadena);
+                },
               ),
               const SizedBox(
                 height: 20,
@@ -74,6 +77,23 @@ class _MyHomePageState extends State<MyHomePage> {
                   );
                 },
                 child: const Text('Ingresar'),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              GestureDetector(
+                onLongPress: () {
+                  print('Yes');
+                },
+                child: Container(
+                  width: 80,
+                  height: 80,
+                  color: Colors.yellow,
+                  child: const Text(
+                    'Gesture Detector',
+                    textAlign: TextAlign.center,
+                  ),
+                ),
               ),
             ],
           ),

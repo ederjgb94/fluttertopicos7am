@@ -30,15 +30,37 @@ class VerProductos extends StatelessWidget {
       ),
       //Explicar for each explicar otra forma de asignar información en una
       //lista de widgets
-      body: ListView(
-        children: [
-          for (var producto in productos)
-            ListTile(
-              title: Text(
-                producto,
+      body: Container(
+        child: ListView(
+          children: List.generate(
+            10,
+            (index) => ListTile(
+              trailing: ElevatedButton(
+                onPressed: () {},
+                child: const Text('Agregar'),
               ),
+              leading: const CircleAvatar(
+                child: Icon(
+                  Icons.person,
+                ),
+              ),
+              title: Text('Producto $index'),
             ),
-        ],
+          ),
+          // children: [
+          //   for (var producto in productos)
+          //     ListTile(
+          //       leading: const CircleAvatar(
+          //         child: Icon(
+          //           Icons.person,
+          //         ),
+          //       ),
+          //       title: Text(
+          //         producto,
+          //       ),
+          //     ),
+          // ],
+        ),
       ),
     );
   }
