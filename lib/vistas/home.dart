@@ -1,6 +1,11 @@
+import 'dart:io';
+import 'dart:math';
+
 import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive/hive.dart';
 import 'package:prueba1/vistas/ver_productos.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -23,6 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    int colorrand = Random().nextInt(2);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -81,14 +87,57 @@ class _MyHomePageState extends State<MyHomePage> {
               const SizedBox(
                 height: 15,
               ),
-              GestureDetector(
-                onLongPress: () {
-                  print('Yes');
+              ElevatedButton(
+                onPressed: () async {
+                  // var path = Directory.current.path;
+                  // Hive.init(path);
+                  // Hive.initFlutter();
+                  // var box = await Hive.openBox('abc');
+
+                  var box = Hive.box('myBox');
+
+                  // box.put('productos', [
+                  //   {
+                  //     'nombre': 'Coca Cola',
+                  //     'precio': 2.5,
+                  //   },
+                  //   {
+                  //     'nombre': 'Pepsi',
+                  //     'precio': 2.5,
+                  //   },
+                  //   {
+                  //     'nombre': 'Fanta',
+                  //     'precio': 2.5,
+                  //   },
+                  // ]);
+
+                  var name = box.get('productos');
+
+                  print('Name: $name');
                 },
-                child: Container(
-                  width: 80,
+                child: const Text('Testeo Hive'),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              GestureDetector(
+                onTap: () {
+                  setState(() {});
+                },
+                child: AnimatedContainer(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: colorrand == 0
+                        ? Colors.blue
+                        : colorrand == 1
+                            ? Colors.teal
+                            : Colors.pink,
+                  ),
+                  width: 60 + (Random().nextInt(200) + 0),
                   height: 80,
-                  color: Colors.yellow,
+                  duration: const Duration(
+                    milliseconds: 500,
+                  ),
                   child: const Text(
                     'Gesture Detector',
                     textAlign: TextAlign.center,
