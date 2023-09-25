@@ -4,7 +4,7 @@ import 'package:prueba1/vistas/home.dart';
 
 Future<void> main() async {
   await Hive.initFlutter();
-  await Hive.openBox('myBox');
+  //await Hive.openBox('myBox');
   runApp(const MyApp());
 }
 

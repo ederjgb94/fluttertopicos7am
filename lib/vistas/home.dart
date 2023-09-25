@@ -92,24 +92,27 @@ class _MyHomePageState extends State<MyHomePage> {
                   // var path = Directory.current.path;
                   // Hive.init(path);
                   // Hive.initFlutter();
-                  // var box = await Hive.openBox('abc');
 
-                  var box = Hive.box('myBox');
+                  //esta es cuando no esta abierta y la voy a usar
+                  var box = await Hive.openBox('myBox');
 
-                  // box.put('productos', [
-                  //   {
-                  //     'nombre': 'Coca Cola',
-                  //     'precio': 2.5,
-                  //   },
-                  //   {
-                  //     'nombre': 'Pepsi',
-                  //     'precio': 2.5,
-                  //   },
-                  //   {
-                  //     'nombre': 'Fanta',
-                  //     'precio': 2.5,
-                  //   },
-                  // ]);
+                  //este escuando ya esta abierta la caja y la voy a usar
+                  // var box = Hive.box('myBox');
+
+                  box.put('productos', [
+                    {
+                      'nombre': 'Coca Cola',
+                      'precio': 32.5,
+                    },
+                    {
+                      'nombre': 'Pepsi',
+                      'precio': 12.5,
+                    },
+                    {
+                      'nombre': 'Fanta',
+                      'precio': 22.5,
+                    },
+                  ]);
 
                   var name = box.get('productos');
 
