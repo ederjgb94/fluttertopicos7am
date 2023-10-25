@@ -9,7 +9,7 @@ class Producto {
     required this.precio,
   });
 
-  factory Producto.fromJson(Map<String, dynamic> json) {
+  factory Producto.fromJson(Map<dynamic, dynamic> json) {
     return Producto(
       nombre: json['nombre'],
       precio: json['precio'],
@@ -37,7 +37,7 @@ class Producto {
 
   static List<Producto> getAll() {
     var productos = Hive.box('productos').values.toList();
-
-    return productos.map((e) => Producto.fromJson(e)).toList();
+    print(productos);
+    return productos.map((p) => Producto.fromJson(p)).toList();
   }
 }

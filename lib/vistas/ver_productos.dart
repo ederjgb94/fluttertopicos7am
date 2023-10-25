@@ -24,12 +24,36 @@ class VerProductos extends StatelessWidget {
         itemCount: productos.length,
         itemBuilder: (context, index) {
           return ListTile(
-              title: Text(
-                productos[index].nombre,
-              ),
-              subtitle: Text(
-                productos[index].precio.toString(),
-              ));
+            title: Text(
+              productos[index].nombre,
+            ),
+            subtitle: Text(
+              productos[index].precio.toString(),
+            ),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    _controller.editarProducto(
+                      context,
+                      productos[index],
+                      index,
+                    );
+                  },
+                  icon: const Icon(
+                    Icons.edit,
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.delete,
+                  ),
+                ),
+              ],
+            ),
+          );
         },
       ),
     );
