@@ -36,6 +36,8 @@ class GuardarProducto extends StatelessWidget {
                   nombre: nombre,
                   precio: precio,
                 );
+
+                Navigator.pop(context);
               },
               child: const Text('Guardar'),
             ),

@@ -35,6 +35,16 @@ class Producto {
     print(productos);
   }
 
+  void update(int index) {
+    //guardar en Hive
+    Hive.box('productos').putAt(index, toJson());
+  }
+
+  static void delete(int index) {
+    //guardar en Hive
+    Hive.box('productos').deleteAt(index);
+  }
+
   static List<Producto> getAll() {
     var productos = Hive.box('productos').values.toList();
     print(productos);

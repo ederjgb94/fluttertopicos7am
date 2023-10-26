@@ -7,8 +7,8 @@ class VerProductosController {
     return Producto.getAll();
   }
 
-  void editarProducto(context, Producto producto, int index) {
-    Navigator.push(
+  Future<void> editarProducto(context, Producto producto, int index) async {
+    await Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => EditarProducto(
@@ -17,5 +17,9 @@ class VerProductosController {
         ),
       ),
     );
+  }
+
+  void eliminarProducto(int index) {
+    Producto.delete(index);
   }
 }
