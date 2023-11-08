@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -151,6 +152,23 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
                 child: const Text(
                   'Ir a guardar productos',
+                ),
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.red, // foreground
+                ),
+                onPressed: () {
+                  FirebaseFirestore firestore = FirebaseFirestore.instance;
+                  var productos = firestore.collection('productos');
+                  productos.add({
+                    'nombre': 'Producto ${Random().nextInt(100)}',
+                    'precio': Random().nextInt(100),
+                  });
+                },
+                child: const Text(
+                  'Test FireStore',
                 ),
               ),
             ],

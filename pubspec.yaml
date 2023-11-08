@@ -40,6 +40,8 @@ dependencies:
   hive_flutter: ^1.1.0
   path_provider: ^2.1.1
   shrink_sidemenu: ^2.0.0+2-null-safety
+  firebase_core: ^2.21.0
+  cloud_firestore: ^4.12.2
   
 
 dev_dependencies:
