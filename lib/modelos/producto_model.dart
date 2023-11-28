@@ -28,7 +28,7 @@ class Producto {
 
   void save() {
     //guardar en Hive
-    Hive.box('productos').add(toJson());
+    Hive.box('productos').put(nombre, toJson());
 
     var productos = Hive.box('productos').values.toList();
 

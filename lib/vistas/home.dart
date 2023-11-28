@@ -8,6 +8,8 @@ import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hive/hive.dart';
 import 'package:prueba1/controladores/home_controller.dart';
+import 'package:prueba1/modelos/producto_model.dart';
+import 'package:prueba1/vistas/carrito_productos.dart';
 import 'package:prueba1/vistas/ver_productos.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
 
@@ -111,6 +113,26 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>>
+      obtenerProductos() async {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    var refProductos = firestore.collection('productos');
+    var datos = await refProductos.get();
+    var productos = datos.docs;
+
+    for (var producto in productos) {
+      print(producto.data());
+    }
+
+    productos.map(
+      (producto) => Text(
+        producto.data()['nombre'],
+      ),
+    );
+
+    return productos;
+  }
+
   @override
   Widget build(BuildContext context) {
     return SideMenu(
@@ -170,6 +192,21 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: const Text(
                   'Test FireStore',
                 ),
+              ),
+              ElevatedButton(
+                onPressed: obtenerProductos,
+                child: const Text('acciona'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CarritoView(),
+                    ),
+                  );
+                },
+                child: const Text('Ir al Carrito'),
               ),
             ],
           ),

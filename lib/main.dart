@@ -12,6 +12,7 @@ Future<void> main() async {
   await Hive.initFlutter();
   await Hive.openBox('productos');
   runApp(const MaterialApp(
+    debugShowCheckedModeBanner: false,
     home: MyHomePage(
       title: 'Prueba 1',
     ),
